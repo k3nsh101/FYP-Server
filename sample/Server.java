@@ -23,7 +23,7 @@ public class Server
 			System.out.println("Waiting for a client ...");
 
 			clientSocket = serverSocket.accept();
-			System.out.println("Client accepted");
+			System.out.println("Client accepted " + clientSocket.getInetAddress());
 
 			// takes input from the client socket
 			din = new DataInputStream(clientSocket.getInputStream());
@@ -40,7 +40,7 @@ public class Server
 			{
 				try
 				{
-					lineFromClient = din.readUTF();
+					lineFromClient = Float.toString(din.readFloat());
 					System.out.println(lineFromClient);
 
 					lineToClient = br.readLine();
@@ -51,6 +51,7 @@ public class Server
 				catch(IOException i)
 				{
 					System.out.println(i);
+					break;
 				}
 			}
 			System.out.println("Closing connection");

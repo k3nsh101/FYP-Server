@@ -37,17 +37,17 @@ public class Client {
 
 		// string to read message from input
 		String lineFromServer = "";
-		String lineToServer = "";
+		Float lineToServer = 0.0f;
 
 		// keep reading until "Over" is input
-		while (!lineToServer.equals("Over")) {
+		while (!lineToServer.equals(1.1f)) {
 			try {
-				lineToServer = br.readLine();
-				dout.writeUTF(lineToServer);
+				lineToServer = Float.parseFloat(br.readLine());
+				dout.writeFloat(lineToServer);
 				dout.flush();
 
-				lineFromServer = din.readUTF();
-				System.out.println(lineFromServer);
+				// lineFromServer = din.readUTF();
+				// System.out.println(lineFromServer);
 
 			}
 			catch (IOException i) {
